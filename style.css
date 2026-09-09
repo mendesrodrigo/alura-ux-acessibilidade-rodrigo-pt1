@@ -10,13 +10,13 @@ body {
     font-size: 22px; /* Fonte ampliada para facilitar a leitura */
     line-height: 1.6;
     background-color: #F4F4F9;
-    color: #111111; /* Alto contraste */
+    color: #111111; /* Alto contraste entre o texto e o fundo */
     padding: 20px;
 }
 
 /* Cabeçalho */
 header {
-    background-color: #003366; /* Azul escuro */
+    background-color: #003366; /* Azul escuro de alto contraste */
     color: #FFFFFF;
     padding: 30px 20px;
     text-align: center;
@@ -39,15 +39,15 @@ main {
     margin: 0 auto;
 }
 
-/* Cartões com Dicas (Estado Normal) */
+/* Cartões com Dicas (Estado Padrão) */
 .dica-card {
     background-color: #FFFFFF;
-    border: 3px solid #003366;
+    border: 3px solid #003366; /* Borda bem definida para delimitação visual */
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
 }
 
@@ -56,7 +56,7 @@ main {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.card-link {
+.card-conteudo {
     text-decoration: none;
     color: inherit;
     display: block;
@@ -74,13 +74,13 @@ main {
 }  
 
 .dica-card strong {
-    background-color: #FFE600; /* Destaque amarelo */
+    background-color: #FFE600; /* Destaque amarelo para pontos vitais */
     color: #000000;
     padding: 2px 6px;
     border-radius: 4px;
 }
 
-.clique-instrucao {
+.dica-instrucao {
     display: inline-block;
     margin-top: 15px;
     font-size: 16px;
@@ -89,17 +89,17 @@ main {
     text-decoration: underline;
 }
 
-/* Elementos do Modal (Escondidos por padrão) */
+/* Esconde o fundo e o botão de fechar quando o card NÃO está ativo */
 .modal-overlay,
 .btn-fechar {
     display: none;
 }
 
-/* ===================================================
-   EFEITO MODAL / SOBREPOSIÇÃO (:target)
-   Quando o Card estiver selecionado (clicado)
-   =================================================== */
+/* ==========================================================
+   ESTILO MODAL (Quando o card é clicado - usando :target)
+   ========================================================== */
 
+/* Transforma o card ativo em uma janela Modal */
 .dica-card:target {
     position: fixed;
     top: 50%;
@@ -108,12 +108,12 @@ main {
     width: 90%;
     max-width: 700px;
     z-index: 1000;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
     border: 4px solid #003366;
-    animation: surgimodal 0.3s ease-out;
+    animation: modalEntrada 0.3s ease-out;
 }
 
-/* Fundo Escuro ao Ativar o Card */
+/* Fundo Escuro (Overlay) */
 .dica-card:target .modal-overlay {
     display: block;
     position: fixed;
@@ -122,7 +122,7 @@ main {
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.75); /* Escurece o fundo */
-    backdrop-filter: blur(4px); /* Efeito desfocado opcional */
+    backdrop-filter: blur(4px); /* Desfoca suavemente o fundo */
     z-index: -1;
 }
 
@@ -146,15 +146,15 @@ main {
 }
 
 .dica-card:target .btn-fechar:hover {
-    background-color: #cc0000;
+    background-color: #CC0000;
 }
 
-.dica-card:target .clique-instrucao {
-    display: none; /* Esconde o texto "Clique para expandir" quando aberto */
+.dica-card:target .dica-instrucao {
+    display: none; /* Esconde a instrução quando aberto */
 }
 
-/* Animação para entrada suave */
-@keyframes surgimodal {
+/* Animação suave para o surgimento do modal */
+@keyframes modalEntrada {
     from {
         opacity: 0;
         transform: translate(-50%, -45%);
